@@ -5,9 +5,12 @@ $password = "FU6ABxbqg4";                 // as set
 $dbname = "sql12806194";                 // your db name
 $port =3306;                        // usually 3306
 
-$conn = new mysqli($servername, $username, $password, $dbname, $port);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // Use $pdo for database queries
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
 }
 ?>
+
